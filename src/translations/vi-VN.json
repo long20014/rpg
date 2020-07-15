@@ -1,0 +1,16 @@
+{
+  "APP_NAME": "Venice Search",
+  "About": "Giới thiệu",
+  "Hello world !": "Chào thế giới!",
+  "Home": "Trang chủ",
+  "Logged in as": "Đăng nhập như",
+  "Login": "Đăng nhập",
+  "Logout": "Đăng xuất",
+  "Password": "Mật khẩu",
+  "Password is required": "Mật khẩu là bắt buộc",
+  "Username": "Tên đăng nhập",
+  "Username is required": "Tên người dùng là bắt buộc",
+  "Username or password incorrect.": "Tên đăng nhập hoặc mật khẩu không chính xác.",
+  "Remember me": "Ghi nhớ đăng nhập",
+  "Version": "Version"
+}
