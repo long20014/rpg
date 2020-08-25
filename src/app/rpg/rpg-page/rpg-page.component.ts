@@ -102,6 +102,7 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
     const chars = document.querySelectorAll('.hidden-char');
     const changePosInterval = setInterval(() => {
       this.pointerPos = {
+        top: (chars.item(i + 1) as HTMLElement).offsetTop + 'px',
         left: (chars.item(i + 1) as HTMLElement).offsetLeft + 'px',
         width: (chars.item(i + 1) as HTMLElement).offsetWidth + 'px'
       };
@@ -117,6 +118,7 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
     const renderTimes = this.chars.length;
     const chars = document.querySelectorAll('.hidden-char');
     this.pointerPos = {
+      top: (chars.item(0) as HTMLElement).offsetTop + 'px',
       left: (chars.item(0) as HTMLElement).offsetLeft + 'px',
       width: (chars.item(0) as HTMLElement).offsetWidth + 'px'
     };

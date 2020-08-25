@@ -13,8 +13,7 @@
 }
 
 .pointer {
-  position: absolute;
-  top: 16px;
+  position: absolute;  
   height: 1rem;
   background: green;
   animation: flicker 1s linear infinite;
