@@ -24,7 +24,7 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.loadMarket();
-    this.chars = this.formatWhiteSpace(this.convertStringToChars('i love u so much'));
+    this.chars = this.formatWhiteSpace(this.convertStringToChars('i ❤ u so much'));
     console.log(this.chars);
   }
 
@@ -97,21 +97,30 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
     };
   }
 
-  changePointerPos(renderTimes: number): void {
+  changePointerPos(renderTimes: number, timer: number): void {
     let i = 0;
     const chars = document.querySelectorAll('.hidden-char');
     const changePosInterval = setInterval(() => {
-      this.pointerPos = {
-        top: (chars.item(i + 1) as HTMLElement).offsetTop + 'px',
-        left: (chars.item(i + 1) as HTMLElement).offsetLeft + 'px',
-        width: (chars.item(i + 1) as HTMLElement).offsetWidth + 'px'
-      };
-      console.log(this.pointerPos);
-      i++;
-      if (i === renderTimes) {
-        clearInterval(changePosInterval);
+      if (chars.item(i + 1)) {
+        this.pointerPos = {
+          top: (chars.item(i + 1) as HTMLElement).offsetTop + 'px',
+          left: (chars.item(i + 1) as HTMLElement).offsetLeft + 'px',
+          width: (chars.item(i + 1) as HTMLElement).offsetWidth + 'px',
+          animation: 'none'
+        };
       }
-    }, 200);
+      i++;
+    }, timer);
+    setTimeout(() => {
+      console.log(i);
+      this.pointerPos = {
+        top: (chars.item(renderTimes - 1) as HTMLElement).offsetTop + 'px',
+        left: (chars.item(renderTimes - 1) as HTMLElement).offsetLeft + (chars.item(renderTimes - 1) as HTMLElement).offsetWidth + 'px',
+        width: 5 + 'px',
+        animation: 'flicker 1s linear infinite'
+      };
+      clearInterval(changePosInterval);
+    }, timer * renderTimes);
   }
 
   loopChangePointerPos(): void {
@@ -122,6 +131,6 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
       left: (chars.item(0) as HTMLElement).offsetLeft + 'px',
       width: (chars.item(0) as HTMLElement).offsetWidth + 'px'
     };
-    setTimeout(() => this.changePointerPos(renderTimes), 3000);
+    setTimeout(() => this.changePointerPos(renderTimes, 200), 3000);
   }
 }
