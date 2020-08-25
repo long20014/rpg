@@ -1,1 +1,51 @@
-<p>rpg-page works!</p>
+<div>
+  <input type="text" #userId>
+  <button (click)="getUser(userId.value)">get user</button>
+</div>
+
+<p>Market</p>
+<table>
+  <thead>
+    <tr>
+      <th>item</th>
+      <th>price</th>
+      <th>quantity</th>
+      <th>action</th>
+    </tr>          
+  </thead>
+  <tbody>    
+    <tr *ngFor="let item of marketItems">
+      <td>{{item.detail.name}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.quantity}}</td>      
+      <td>
+        <button (click)="buy(item)">Buy</button>
+      </td>      
+    </tr>  
+  </tbody>        
+</table>
+
+
+<p>User: {{user?.username ? user.username : 'No user found'}}</p>
+<p>Gold: {{user?.character?.gold ? user.character.gold : 'No user found'}}</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>item</th>
+      <th>quatity</th>     
+    </tr>          
+  </thead>
+  <tbody>    
+    <tr *ngFor="let item of user?.character?.items">
+      <td>{{item.name}}</td>
+      <td>{{item.quantity}}</td>      
+    </tr>  
+  </tbody>        
+</table>
+
+<div class="text-box">
+  <div class="pointer" [ngStyle]="pointerPos" #pointer></div>
+  <span class="hidden-char" *ngFor="let char of chars; let i = index" [ngStyle]="getAppearAnimation(i, 0.2)">{{char}}</span>
+</div>
