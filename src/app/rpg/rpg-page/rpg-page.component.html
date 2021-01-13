@@ -47,5 +47,5 @@
 
 <div class="text-box">
   <div class="pointer" [ngStyle]="pointerPos" #pointer></div>
-  <span class="hidden-char" *ngFor="let char of chars; let i = index" [ngStyle]="getAppearAnimation(i, 0.2)">{{char}}</span>
+  <span class="hidden-char" *ngFor="let char of chars; let i = index" [ngStyle]="getAppearAnimation(i, offset)">{{char}}</span>
 </div>

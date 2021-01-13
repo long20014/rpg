@@ -16,6 +16,8 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
   chars: string[] = [];
   pointerPos: any;
   widths: string[] = [];
+  animationDelay = 3000;
+  offset = 200;
 
   constructor(
     private userService: UserService,
@@ -24,8 +26,8 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.loadMarket();
-    this.chars = this.formatWhiteSpace(this.convertStringToChars('i ❤ u so much'));
-    console.log(this.chars);
+    this.addSpeedUpEvent();
+    this.chars = this.formatWhiteSpace(this.convertStringToChars('i ❤ u so much!!!'));
   }
 
   ngOnDestroy(): void {
@@ -92,8 +94,8 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   getAppearAnimation(index: number, offset: number): any {
     return {
-      animation: `appear ${offset}s linear forwards`,
-      animationDelay: `${index * offset + 3}s`
+      animation: `appear ${offset}ms linear forwards`,
+      animationDelay: `${index * offset + this.animationDelay}ms`
     };
   }
 
@@ -112,7 +114,6 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
       i++;
     }, timer);
     setTimeout(() => {
-      console.log(i);
       this.pointerPos = {
         top: (chars.item(renderTimes - 1) as HTMLElement).offsetTop + 'px',
         left: (chars.item(renderTimes - 1) as HTMLElement).offsetLeft + (chars.item(renderTimes - 1) as HTMLElement).offsetWidth + 'px',
@@ -131,6 +132,14 @@ export class RpgPageComponent implements OnInit, OnDestroy, AfterViewInit {
       left: (chars.item(0) as HTMLElement).offsetLeft + 'px',
       width: (chars.item(0) as HTMLElement).offsetWidth + 'px'
     };
-    setTimeout(() => this.changePointerPos(renderTimes, 200), 3000);
+    setTimeout(() => this.changePointerPos(renderTimes, this.offset), this.animationDelay);
+  }
+
+  addSpeedUpEvent(): void {
+    document.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        this.offset = 150;
+      }
+    });
   }
 }
